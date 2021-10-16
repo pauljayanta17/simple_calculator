@@ -2,7 +2,6 @@ import 'package:calculator/const.dart';
 import 'package:flutter/material.dart';
 
 DigitPrint(String s) {
-  if (s != "=") finalcontroller.text = finalcontroller.text + s;
   if (s == "=") {
     print("= start here");
     all.insert(i, temp);
@@ -68,16 +67,22 @@ DigitPrint(String s) {
       all.insert(i, temp);
       i++;
     }
-    all.insert(i, s);
-    i++;
+
+    if (i > 0 && all[i - 1] != s) {
+      all.insert(i, s);
+      i++;
+      finalcontroller.text = finalcontroller.text + s;
+    }
     print(all);
     temp = "";
     count++;
   } else {
     temp = temp + s;
     count = 0;
+    finalcontroller.text = finalcontroller.text + s;
     // number = double.parse(temp);
   }
+
+  tempStr = finalcontroller.text;
   //  s1=s;
 }
-

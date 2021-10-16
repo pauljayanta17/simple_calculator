@@ -1,6 +1,9 @@
 import 'package:calculator/buttonWidgets.dart';
 import 'package:calculator/calculator_functions.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'const.dart';
 
 class CalculatorUIPage extends StatefulWidget {
@@ -16,16 +19,6 @@ class _CalculatorUIPageState extends State<CalculatorUIPage> {
     Size size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
-        // appBar: AppBar(
-        //   title: Text("Welcome"),
-        //   centerTitle: true,
-        //   backgroundColor: Colors.indigo,
-        //   automaticallyImplyLeading: false,
-        //   elevation: 10.0,
-        //   shape: RoundedRectangleBorder(
-        //     borderRadius: BorderRadius.circular(20),
-        //   ),
-        // ),
         body: SingleChildScrollView(
           scrollDirection: Axis.vertical,
           child: SingleChildScrollView(
@@ -44,48 +37,68 @@ class _CalculatorUIPageState extends State<CalculatorUIPage> {
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: <Widget>[
                             Container(
-                              height: 70,
-                              width: size.width,
+                              height: size.height*0.08,
+                              width: size.width*0.6,
                               // color: Colors.indigo,
                               child: Card(
                                 color: Colors.white,
                                 child: Text(
                                   "Calculator",
                                   textAlign: TextAlign.center,
-                                  style: TextStyle(
-                                      fontSize: 45,
-                                      color: Colors.deepPurpleAccent),
+                                  style: GoogleFonts.sail(
+                                      fontSize: size.height*0.05,
+                                      fontWeight: FontWeight.bold,
+                                      color: Color.fromRGBO( 85, 83, 203 ,1)),
                                 ),
                               ),
                             ),
                             SizedBox(
-                              height: 50,
+                              height: size.height*0.07,
                             ),
-                            TextField(
-                              enabled: false,
-                              decoration: InputDecoration(
-                                disabledBorder: OutlineInputBorder(),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  enabled: false,
+                                ),
+                                textAlign: TextAlign.right,
+                                readOnly: true,
+                                controller: finalcontroller,
+                                style: GoogleFonts.roboto(fontSize: size.height*0.05,letterSpacing: 2.0),
                               ),
-                              controller: finalcontroller,
-                              style: TextStyle(fontSize: 30),
                             ),
-                            TextField(
-                              enabled: false,
-                              decoration: InputDecoration(
-                                disabledBorder: OutlineInputBorder(),
+                            Container(
+                              padding: EdgeInsets.symmetric(horizontal: 8),
+                              child: TextField(
+                                decoration: InputDecoration(
+                                  enabled: false,
+                                  hintText: "Ans"
+                                ),
+                              readOnly: true,
+                                 textAlign: TextAlign.right,
+                                controller: controller,
+                                onChanged: (val) {},
+                                style: TextStyle(fontSize: 30),
                               ),
-                              textDirection: TextDirection.ltr,
-                              controller: controller,
-                              onChanged: (val) {},
-                              style: TextStyle(fontSize: 30),
                             ),
                           ],
                         ),
                       ),
+                          Align(
+                            alignment: Alignment.topRight,
+                            child: Container(
+                               margin: EdgeInsets.only(right: size.width*0.14),
+                              child: ButtonWidgets(text: "D", size: size, color: Color.fromRGBO( 129, 159, 7 ,1)
+                              ,onPressed: (){
+                                DigitPrint("D");
+                              },
+                              ),
+                            ),
+                          ),
 
                       Container(
-                          color: Colors.teal.withOpacity(0.2),
-                          height: MediaQuery.of(context).size.height * 0.53,
+                          // color: Colors.teal.withOpacity(0.2),
+                          height: MediaQuery.of(context).size.height * 0.54,
                           width: MediaQuery.of(context).size.width,
                           child: Row(
                             children: <Widget>[
@@ -133,7 +146,7 @@ class _CalculatorUIPageState extends State<CalculatorUIPage> {
                                           ButtonWidgets(
                                             size: size,
                                             text: "4",
-                                            color: Colors.amber,
+                                            color: Colors.deepOrangeAccent,
                                             onPressed: () {
                                               DigitPrint("4");
                                             },
@@ -149,7 +162,7 @@ class _CalculatorUIPageState extends State<CalculatorUIPage> {
                                           ButtonWidgets(
                                             size: size,
                                             text: "6",
-                                            color: Colors.orange,
+                                            color: Colors.orange.withOpacity(0.9),
                                             onPressed: () {
                                               DigitPrint("6");
                                             },
@@ -253,7 +266,7 @@ class _CalculatorUIPageState extends State<CalculatorUIPage> {
                                     ButtonWidgets(
                                       size: size,
                                       text: "/",
-                                      color: Colors.red,
+                                      color: Color.fromRGBO(  119, 41, 193  ,2),
                                       onPressed: () {
                                         DigitPrint("/");
                                       },

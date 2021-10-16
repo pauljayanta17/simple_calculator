@@ -27,6 +27,7 @@ class _mycalculatorState extends State<mycalculator> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      darkTheme: ThemeData.dark(),
       debugShowCheckedModeBanner: false,
       home: CalculatorUIPage()
     );

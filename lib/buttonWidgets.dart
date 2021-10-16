@@ -16,8 +16,10 @@ class _ButtonWidgetsState extends State<ButtonWidgets> {
     return FloatingActionButton(
       child: Text(
         this.widget.text,
+        
         style: TextStyle(
           fontSize: this.widget.size.height*0.045,
+          color: Colors.white
         ),
       ),
       elevation: 10.0,
